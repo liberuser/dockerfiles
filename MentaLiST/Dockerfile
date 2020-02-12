@@ -6,8 +6,10 @@ RUN julia -e 'using Pkg; Pkg.add.(["Distributed", "ArgParse", "BioSequences", "J
 
 RUN curl -L -O https://github.com/liberuser/MentaLiST/archive/latest.tar.gz \
  && tar -zxvf latest.tar.gz -C /opt MentaLiST-latest \
- && ln -s /opt/MentaLiST-latest/src/mentalist /usr/local/bin/mentalist \
  && rm -rf latest.tar.gz \
  && chmod -R a+rwx /opt
+
+RUN rm -rf /usr/local/bin \
+ && ln -s /opt/MentaLiST-latest/src/ /usr/local/bin
 
 ENTRYPOINT ["bash"]
